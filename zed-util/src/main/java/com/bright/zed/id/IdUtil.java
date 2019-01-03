@@ -1,5 +1,6 @@
 package com.bright.zed.id;
 
+import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -11,6 +12,21 @@ import java.util.concurrent.ThreadLocalRandom;
  * @since 2018-12-03 6:14 PM
  */
 public class IdUtil {
+
+    private static Random r = new Random();
+
+    /**
+     * 根据一个范围，生成一个随机的整数
+     *
+     * @param min
+     *            最小值（包括）
+     * @param max
+     *            最大值（包括）
+     * @return 随机数
+     */
+    public static int random(int min, int max) {
+        return r.nextInt(max - min + 1) + min;
+    }
     /**
      * 返回使用ThreadLocalRandom的UUID，比默认的UUID性能更优
      * @return str
