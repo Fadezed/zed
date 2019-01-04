@@ -43,7 +43,7 @@
         </filter>
     </appender>
 
-    <root level="DEBUG">
+    <root level="info">
         <appender-ref ref="console"/>
         <appender-ref ref="log.blog"/>
     </root>

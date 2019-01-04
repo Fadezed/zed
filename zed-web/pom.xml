@@ -68,7 +68,25 @@
         </dependency>
 
     </dependencies>
+    <profiles>
+        <profile>
+            <id>local</id>
+            <properties>
+                <profileActive>local</profileActive>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <profileActive>prod</profileActive>
+            </properties>
+        </profile>
+    </profiles>
     <build>
+        <finalName>zed-web-${profileActive}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
