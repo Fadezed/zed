@@ -4,6 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
+/**
+ * @author zed
+ */
 @EnableScheduling
 @SpringBootApplication(scanBasePackages = "com.bright.zed")
 public class TaskApplication {
