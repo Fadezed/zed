@@ -1,7 +1,7 @@
 package com.bright.zed.service;
 
 
-import com.bright.zed.model.Vo.RelationshipVoKey;
+import com.bright.zed.model.vo.RelationshipVoKey;
 
 import java.util.List;
 

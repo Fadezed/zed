@@ -1,11 +1,11 @@
 package com.bright.zed.service;
 
 import com.bright.zed.dto.MetaDto;
-import com.bright.zed.model.Bo.ArchiveBo;
-import com.bright.zed.model.Bo.BackResponseBo;
-import com.bright.zed.model.Bo.StatisticsBo;
-import com.bright.zed.model.Vo.CommentVo;
-import com.bright.zed.model.Vo.ContentVo;
+import com.bright.zed.model.bo.ArchiveBo;
+import com.bright.zed.model.bo.BackResponseBo;
+import com.bright.zed.model.bo.StatisticsBo;
+import com.bright.zed.model.vo.CommentVo;
+import com.bright.zed.model.vo.ContentVo;
 
 import java.util.List;
 

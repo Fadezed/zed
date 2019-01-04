@@ -1,8 +1,7 @@
-package com.bright.zed.model.Bo;
+package com.bright.zed.model.bo;
 
 
-import com.bright.zed.model.Vo.CommentVo;
-import lombok.Data;
+import com.bright.zed.model.vo.CommentVo;
 
 import java.util.List;
 
@@ -10,7 +9,6 @@ import java.util.List;
  * 返回页面的评论，包含父子评论内容
  * @author zed
  */
-@Data
 public class CommentBo extends CommentVo {
 
     private int levels;
@@ -30,4 +28,19 @@ public class CommentBo extends CommentVo {
         setCid(comments.getCid());
     }
 
+    public int getLevels() {
+        return levels;
+    }
+
+    public void setLevels(int levels) {
+        this.levels = levels;
+    }
+
+    public List<CommentVo> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<CommentVo> children) {
+        this.children = children;
+    }
 }

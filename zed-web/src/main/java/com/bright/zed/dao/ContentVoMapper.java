@@ -1,8 +1,8 @@
 package com.bright.zed.dao;
 
-import com.bright.zed.model.Bo.ArchiveBo;
-import com.bright.zed.model.Vo.ContentVo;
-import com.bright.zed.model.Vo.ContentVoExample;
+import com.bright.zed.model.bo.ArchiveBo;
+import com.bright.zed.model.vo.ContentVo;
+import com.bright.zed.model.vo.ContentVoExample;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

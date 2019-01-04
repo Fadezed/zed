@@ -2,7 +2,7 @@ package com.bright.zed.controller;
 
 import com.bright.zed.MapCache;
 import com.bright.zed.common.TaleUtils;
-import com.bright.zed.model.Vo.UserVo;
+import com.bright.zed.model.vo.UserVo;
 
 import javax.servlet.http.HttpServletRequest;
 

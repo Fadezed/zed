@@ -1,8 +1,8 @@
 package com.bright.zed.service.impl;
 
 import com.bright.zed.dao.OptionVoMapper;
-import com.bright.zed.model.Vo.OptionVo;
-import com.bright.zed.model.Vo.OptionVoExample;
+import com.bright.zed.model.vo.OptionVo;
+import com.bright.zed.model.vo.OptionVoExample;
 import com.bright.zed.service.IOptionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

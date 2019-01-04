@@ -5,8 +5,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * map缓存实现
- * <p>
- * Created by 13 on 2017/2/7.
+ * @author zed
  */
 public class MapCache {
 
@@ -38,9 +37,10 @@ public class MapCache {
      * 读取一个缓存
      *
      * @param key 缓存key
-     * @param <T>
-     * @return
+     * @param <T> t
+     * @return t
      */
+    @SuppressWarnings("unchecked")
     public <T> T get(String key) {
         CacheObject cacheObject = cachePool.get(key);
         if (null != cacheObject) {
@@ -58,8 +58,8 @@ public class MapCache {
      *
      * @param key   缓存key
      * @param field 缓存field
-     * @param <T>
-     * @return
+     * @param <T> t
+     * @return t
      */
     public <T> T hget(String key, String field) {
         key = key + ":" + field;

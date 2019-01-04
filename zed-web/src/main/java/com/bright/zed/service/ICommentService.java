@@ -1,8 +1,8 @@
 package com.bright.zed.service;
 
-import com.bright.zed.model.Bo.CommentBo;
-import com.bright.zed.model.Vo.CommentVo;
-import com.bright.zed.model.Vo.CommentVoExample;
+import com.bright.zed.model.bo.CommentBo;
+import com.bright.zed.model.vo.CommentVo;
+import com.bright.zed.model.vo.CommentVoExample;
 import com.github.pagehelper.PageInfo;
 
 /**

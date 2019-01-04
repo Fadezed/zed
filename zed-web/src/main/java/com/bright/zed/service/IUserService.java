@@ -1,6 +1,6 @@
 package com.bright.zed.service;
 
-import com.bright.zed.model.Vo.UserVo;
+import com.bright.zed.model.vo.UserVo;
 
 /**
  * Created by BlueT on 2017/3/3.

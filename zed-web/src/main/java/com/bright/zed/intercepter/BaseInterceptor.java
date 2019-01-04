@@ -8,7 +8,7 @@ import com.bright.zed.common.TaleUtils;
 import com.bright.zed.constant.WebConst;
 import com.bright.zed.dto.Types;
 import com.bright.zed.id.IdUtil;
-import com.bright.zed.model.Vo.UserVo;
+import com.bright.zed.model.vo.UserVo;
 import com.bright.zed.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

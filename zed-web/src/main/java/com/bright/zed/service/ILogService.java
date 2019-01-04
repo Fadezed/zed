@@ -1,6 +1,6 @@
 package com.bright.zed.service;
 
-import com.bright.zed.model.Vo.LogVo;
+import com.bright.zed.model.vo.LogVo;
 
 import java.util.List;
 

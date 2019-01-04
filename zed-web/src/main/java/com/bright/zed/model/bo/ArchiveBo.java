@@ -1,7 +1,7 @@
-package com.bright.zed.model.Bo;
+package com.bright.zed.model.bo;
 
 
-import com.bright.zed.model.Vo.ContentVo;
+import com.bright.zed.model.vo.ContentVo;
 import lombok.Data;
 import lombok.ToString;
 

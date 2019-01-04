@@ -1,7 +1,7 @@
 package com.bright.zed.dao;
 
-import com.bright.zed.model.Vo.UserVo;
-import com.bright.zed.model.Vo.UserVoExample;
+import com.bright.zed.model.vo.UserVo;
+import com.bright.zed.model.vo.UserVoExample;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

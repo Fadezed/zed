@@ -2,7 +2,7 @@ package com.bright.zed.service;
 
 
 import com.bright.zed.dto.MetaDto;
-import com.bright.zed.model.Vo.MetaVo;
+import com.bright.zed.model.vo.MetaVo;
 
 import java.util.List;
 

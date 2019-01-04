@@ -1,4 +1,4 @@
-package com.bright.zed.model.Bo;
+package com.bright.zed.model.bo;
 
 /**
  * rest返回对象

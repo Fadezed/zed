@@ -1,7 +1,7 @@
 package com.bright.zed.dao;
 
-import com.bright.zed.model.Vo.RelationshipVoExample;
-import com.bright.zed.model.Vo.RelationshipVoKey;
+import com.bright.zed.model.vo.RelationshipVoExample;
+import com.bright.zed.model.vo.RelationshipVoKey;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

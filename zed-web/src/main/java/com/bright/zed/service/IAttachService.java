@@ -1,7 +1,7 @@
 package com.bright.zed.service;
 
 
-import com.bright.zed.model.Vo.AttachVo;
+import com.bright.zed.model.vo.AttachVo;
 import com.github.pagehelper.PageInfo;
 
 /**

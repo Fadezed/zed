@@ -5,7 +5,7 @@ import com.bright.zed.controller.BaseController;
 import com.bright.zed.dto.MetaDto;
 import com.bright.zed.dto.Types;
 import com.bright.zed.exception.TipException;
-import com.bright.zed.model.Bo.RestResponseBo;
+import com.bright.zed.model.bo.RestResponseBo;
 import com.bright.zed.service.IMetaService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;

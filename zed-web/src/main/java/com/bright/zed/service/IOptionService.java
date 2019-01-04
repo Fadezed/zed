@@ -1,7 +1,7 @@
 package com.bright.zed.service;
 
 
-import com.bright.zed.model.Vo.OptionVo;
+import com.bright.zed.model.vo.OptionVo;
 
 import java.util.List;
 import java.util.Map;

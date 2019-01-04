@@ -1,4 +1,4 @@
-package com.bright.zed.model.Vo;
+package com.bright.zed.model.vo;
 
 import lombok.Data;
 import lombok.ToString;

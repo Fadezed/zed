@@ -2,7 +2,7 @@ package com.bright.zed.common;
 
 
 import com.bright.zed.Tools;
-import com.bright.zed.model.Vo.MetaVo;
+import com.bright.zed.model.vo.MetaVo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 

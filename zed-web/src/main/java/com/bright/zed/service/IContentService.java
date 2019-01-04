@@ -1,7 +1,7 @@
 package com.bright.zed.service;
 
-import com.bright.zed.model.Vo.ContentVo;
-import com.bright.zed.model.Vo.ContentVoExample;
+import com.bright.zed.model.vo.ContentVo;
+import com.bright.zed.model.vo.ContentVoExample;
 import com.github.pagehelper.PageInfo;
 
 /**

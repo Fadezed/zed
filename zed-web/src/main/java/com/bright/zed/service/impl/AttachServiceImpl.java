@@ -2,8 +2,8 @@ package com.bright.zed.service.impl;
 
 import com.bright.zed.DateKit;
 import com.bright.zed.dao.AttachVoMapper;
-import com.bright.zed.model.Vo.AttachVo;
-import com.bright.zed.model.Vo.AttachVoExample;
+import com.bright.zed.model.vo.AttachVo;
+import com.bright.zed.model.vo.AttachVoExample;
 import com.bright.zed.service.IAttachService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;

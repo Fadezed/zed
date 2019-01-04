@@ -1,11 +1,10 @@
 package com.bright.zed.dao;
 
 import com.bright.zed.dto.MetaDto;
-import com.bright.zed.model.Vo.MetaVo;
-import com.bright.zed.model.Vo.MetaVoExample;
+import com.bright.zed.model.vo.MetaVo;
+import com.bright.zed.model.vo.MetaVoExample;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;

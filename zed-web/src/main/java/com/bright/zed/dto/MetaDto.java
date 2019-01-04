@@ -1,7 +1,7 @@
 package com.bright.zed.dto;
 
 
-import com.bright.zed.model.Vo.MetaVo;
+import com.bright.zed.model.vo.MetaVo;
 
 public class MetaDto extends MetaVo {
 

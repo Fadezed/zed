@@ -1,8 +1,8 @@
 package com.bright.zed.service.impl;
 
 import com.bright.zed.dao.RelationshipVoMapper;
-import com.bright.zed.model.Vo.RelationshipVoExample;
-import com.bright.zed.model.Vo.RelationshipVoKey;
+import com.bright.zed.model.vo.RelationshipVoExample;
+import com.bright.zed.model.vo.RelationshipVoKey;
 import com.bright.zed.service.IRelationshipService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
