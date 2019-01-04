@@ -10,9 +10,8 @@ import com.bright.zed.model.Bo.RestResponseBo;
 import com.bright.zed.model.Vo.UserVo;
 import com.bright.zed.service.ILogService;
 import com.bright.zed.service.IUserService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -26,14 +25,13 @@ import java.io.IOException;
 
 /**
  * 用户后台登录/登出
- * Created by BlueT on 2017/3/11.
+ * @author zed
  */
+@Slf4j
 @Controller
 @RequestMapping("/back")
 @Transactional(rollbackFor = TipException.class)
 public class AuthController extends BaseController {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(AuthController.class);
 
     @Resource
     private IUserService usersService;
@@ -48,40 +46,40 @@ public class AuthController extends BaseController {
 
     /**
      * 管理后台登录
-     * @param username
-     * @param password
-     * @param remeber_me
-     * @param request
-     * @param response
-     * @return
+     * @param username user
+     * @param password pa
+     * @param remember r
+     * @param request re
+     * @param response re
+     * @return s
      */
     @PostMapping(value = "login")
     @ResponseBody
     public RestResponseBo doLogin(@RequestParam String username,
                                   @RequestParam String password,
-                                  @RequestParam(required = false) String remeber_me,
+                                  @RequestParam(required = false) String remember,
                                   HttpServletRequest request,
                                   HttpServletResponse response) {
 
-        Integer error_count = cache.get("login_error_count");
+        Integer errorCount = cache.get("login_error_count");
         try {
             UserVo user = usersService.login(username, password);
             request.getSession().setAttribute(WebConst.LOGIN_SESSION_KEY, user);
-            if (StringUtils.isNotBlank(remeber_me)) {
+            if (StringUtils.isNotBlank(remember)) {
                 TaleUtils.setCookie(response, user.getUid());
             }
             logService.insertLog(LogActions.LOGIN.getAction(), null, request.getRemoteAddr(), user.getUid());
         } catch (Exception e) {
-            error_count = null == error_count ? 1 : error_count + 1;
-            if (error_count > 3) {
+            errorCount = null == errorCount ? 1 : errorCount + 1;
+            if (errorCount > 3) {
                 return RestResponseBo.fail("您输入密码已经错误超过3次，请10分钟后尝试");
             }
-            cache.set("login_error_count", error_count, 10 * 60);
+            cache.set("login_error_count", errorCount, 10 * 60);
             String msg = "登录失败";
             if (e instanceof TipException) {
                 msg = e.getMessage();
             } else {
-                LOGGER.error(msg, e);
+                log.error(msg, e);
             }
             return RestResponseBo.fail(msg);
         }
@@ -90,8 +88,8 @@ public class AuthController extends BaseController {
 
     /**
      * 注销
-     * @param session
-     * @param response
+     * @param session se
+     * @param response re
      */
     @GetMapping("/logout")
     public void logout(HttpSession session, HttpServletResponse response, HttpServletRequest request) {
@@ -102,8 +100,7 @@ public class AuthController extends BaseController {
         try {
             response.sendRedirect(Commons.getSiteUrl());
         } catch (IOException e) {
-            e.printStackTrace();
-            LOGGER.error("注销失败", e);
+            log.error("注销失败", e);
         }
     }
 }

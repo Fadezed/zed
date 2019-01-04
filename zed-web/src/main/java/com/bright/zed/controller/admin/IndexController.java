@@ -15,9 +15,8 @@ import com.bright.zed.model.Vo.UserVo;
 import com.bright.zed.service.ILogService;
 import com.bright.zed.service.ISiteService;
 import com.bright.zed.service.IUserService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -29,13 +28,13 @@ import java.util.List;
 
 /**
  * 后台管理首页
- * Created by Administrator on 2017/3/9 009.
+ * @author zed
  */
+@Slf4j
 @Controller("adminIndexController")
 @RequestMapping("/back")
 @Transactional(rollbackFor = TipException.class)
 public class IndexController extends BaseController {
-    private static final Logger LOGGER = LoggerFactory.getLogger(IndexController.class);
 
     @Resource
     private ISiteService siteService;
@@ -52,7 +51,7 @@ public class IndexController extends BaseController {
      */
     @GetMapping(value = {"","/index"})
     public String index(HttpServletRequest request){
-        LOGGER.info("Enter admin index method");
+        log.info("Enter admin index method");
         List<CommentVo> comments = siteService.recentComments(5);
         List<ContentVo> contents = siteService.recentContents(5);
         StatisticsBo statistics = siteService.getStatistics();
@@ -63,7 +62,7 @@ public class IndexController extends BaseController {
         request.setAttribute("articles", contents);
         request.setAttribute("statistics", statistics);
         request.setAttribute("logs", logs);
-        LOGGER.info("Exit admin index method");
+        log.info("Exit admin index method");
         return "admin/index";
     }
 
@@ -74,17 +73,6 @@ public class IndexController extends BaseController {
     public String profile() {
         return "admin/profile";
     }
-
-    /**
-     * admin 退出登录
-     * @return
-     */
-//    @GetMapping(value = "logout")
-//    public String logout() {
-//        System.out.println("index-----------logout");
-//        return "admin/login";
-//    }
-
 
     /**
      * 保存个人信息
@@ -149,7 +137,7 @@ public class IndexController extends BaseController {
             if (e instanceof TipException) {
                 msg = e.getMessage();
             } else {
-                LOGGER.error(msg, e);
+                log.error(msg, e);
             }
             return RestResponseBo.fail(msg);
         }

@@ -20,9 +20,8 @@ import com.bright.zed.service.IMetaService;
 import com.bright.zed.service.ISiteService;
 import com.github.pagehelper.PageInfo;
 import com.vdurmont.emoji.EmojiParser;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -37,11 +36,11 @@ import java.util.List;
 
 /**
  * 首页
- * Created by Administrator on 2017/3/8 008.
+ * @author zed
  */
+@Slf4j
 @Controller
 public class IndexController extends BaseController {
-    private static final Logger LOGGER = LoggerFactory.getLogger(IndexController.class);
 
     @Resource
     private IContentService contentService;
@@ -57,8 +56,7 @@ public class IndexController extends BaseController {
 
     /**
      * 首页
-     *
-     * @return
+     * @return str
      */
     @GetMapping(value = {"/", "index"})
     public String index(HttpServletRequest request, @RequestParam(value = "limit", defaultValue = "12") int limit) {
@@ -89,7 +87,7 @@ public class IndexController extends BaseController {
      *
      * @param request 请求
      * @param cid     文章主键
-     * @return
+     * @return str
      */
     @GetMapping(value = {"article/{cid}", "article/{cid}.html"})
     public String getArticle(HttpServletRequest request, @PathVariable String cid) {
@@ -109,7 +107,7 @@ public class IndexController extends BaseController {
      *
      * @param request 请求
      * @param cid     文章主键
-     * @return
+     * @return str
      */
     @GetMapping(value = {"article/{cid}/preview", "article/{cid}.html"})
     public String articlePreview(HttpServletRequest request, @PathVariable String cid) {
@@ -127,8 +125,8 @@ public class IndexController extends BaseController {
     /**
      * 抽取公共方法
      *
-     * @param request
-     * @param contents
+     * @param request re
+     * @param contents c
      */
     private void completeArticle(HttpServletRequest request, ContentVo contents) {
         if (contents.getAllowComment()) {
@@ -145,8 +143,8 @@ public class IndexController extends BaseController {
     /**
      * 注销
      *
-     * @param session
-     * @param response
+     * @param session se
+     * @param response re
      */
     @RequestMapping("logout")
     public void logout(HttpSession session, HttpServletResponse response) {
@@ -162,14 +160,14 @@ public class IndexController extends BaseController {
     public RestResponseBo comment(HttpServletRequest request, HttpServletResponse response,
                                   @RequestParam Integer cid, @RequestParam Integer coid,
                                   @RequestParam String author, @RequestParam String mail,
-                                  @RequestParam String url, @RequestParam String text, @RequestParam String _csrf_token) {
+                                  @RequestParam String url, @RequestParam String text, @RequestParam String tokenParam) {
 
         String ref = request.getHeader("Referer");
-        if (StringUtils.isBlank(ref) || StringUtils.isBlank(_csrf_token)) {
+        if (StringUtils.isBlank(ref) || StringUtils.isBlank(tokenParam)) {
             return RestResponseBo.fail(ErrorCode.BAD_REQUEST);
         }
 
-        String token = cache.hget(Types.CSRF_TOKEN.getType(), _csrf_token);
+        String token = cache.hget(Types.CSRF_TOKEN.getType(), tokenParam);
         if (StringUtils.isBlank(token)) {
             return RestResponseBo.fail(ErrorCode.BAD_REQUEST);
         }
@@ -229,7 +227,7 @@ public class IndexController extends BaseController {
             if (e instanceof TipException) {
                 msg = e.getMessage();
             } else {
-                LOGGER.error(msg, e);
+                log.error(msg, e);
             }
             return RestResponseBo.fail(msg);
         }
@@ -239,7 +237,7 @@ public class IndexController extends BaseController {
     /**
      * 分类页
      *
-     * @return
+     * @return st
      */
     @GetMapping(value = "category/{keyword}")
     public String categories(HttpServletRequest request, @PathVariable String keyword, @RequestParam(value = "limit", defaultValue = "12") int limit) {
@@ -269,7 +267,7 @@ public class IndexController extends BaseController {
     /**
      * 归档页
      *
-     * @return
+     * @return st
      */
     @GetMapping(value = "archives")
     public String archives(HttpServletRequest request) {
@@ -281,7 +279,7 @@ public class IndexController extends BaseController {
     /**
      * 友链页
      *
-     * @return
+     * @return st
      */
     @GetMapping(value = "links")
     public String links(HttpServletRequest request) {
@@ -316,8 +314,8 @@ public class IndexController extends BaseController {
     /**
      * 搜索页
      *
-     * @param keyword
-     * @return
+     * @param keyword key
+     * @return str
      */
     @GetMapping(value = "search/{keyword}")
     public String search(HttpServletRequest request, @PathVariable String keyword, @RequestParam(value = "limit", defaultValue = "12") int limit) {
@@ -337,8 +335,8 @@ public class IndexController extends BaseController {
     /**
      * 更新文章的点击率
      *
-     * @param cid
-     * @param chits
+     * @param cid c
+     * @param chits c
      */
     @Transactional(rollbackFor = TipException.class)
     public void updateArticleHit(Integer cid, Integer chits) {
@@ -361,8 +359,8 @@ public class IndexController extends BaseController {
     /**
      * 标签页
      *
-     * @param name
-     * @return
+     * @param name n
+     * @return r
      */
     @GetMapping(value = "tag/{name}")
     public String tags(HttpServletRequest request, @PathVariable String name, @RequestParam(value = "limit", defaultValue = "12") int limit) {
@@ -372,11 +370,11 @@ public class IndexController extends BaseController {
     /**
      * 标签分页
      *
-     * @param request
-     * @param name
-     * @param page
-     * @param limit
-     * @return
+     * @param request re
+     * @param name name
+     * @param page page
+     * @param limit limit
+     * @return str
      */
     @GetMapping(value = "tag/{name}/{page}")
     public String tags(HttpServletRequest request, @PathVariable String name, @PathVariable int page, @RequestParam(value = "limit", defaultValue = "12") int limit) {
@@ -401,10 +399,10 @@ public class IndexController extends BaseController {
     /**
      * 设置cookie
      *
-     * @param name
-     * @param value
-     * @param maxAge
-     * @param response
+     * @param name name
+     * @param value value
+     * @param maxAge maxAge
+     * @param response res
      */
     private void cookie(String name, String value, int maxAge, HttpServletResponse response) {
         Cookie cookie = new Cookie(name, value);

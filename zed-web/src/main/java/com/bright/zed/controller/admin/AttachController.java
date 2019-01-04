@@ -13,8 +13,7 @@ import com.bright.zed.model.Vo.UserVo;
 import com.bright.zed.service.IAttachService;
 import com.bright.zed.service.ILogService;
 import com.github.pagehelper.PageInfo;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.FileCopyUtils;
@@ -31,16 +30,14 @@ import java.util.List;
 
 /**
  * 附件管理
- *
- * Created by 13 on 2017/2/21.
+ * @author zed
  */
+@Slf4j
 @Controller
 @RequestMapping("back/attach")
 public class AttachController extends BaseController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(AttachController.class);
-
-    public static final String CLASSPATH = TaleUtils.getUplodFilePath();
+    public static final String CLASSPATH = TaleUtils.getUploadFilePath();
 
     @Resource
     private IAttachService attachService;
@@ -51,10 +48,10 @@ public class AttachController extends BaseController {
     /**
      * 附件页面
      *
-     * @param request
-     * @param page
-     * @param limit
-     * @return
+     * @param request re
+     * @param page page
+     * @param limit limit
+     * @return str
      */
     @GetMapping(value = "")
     public String index(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "1") int page,
@@ -68,9 +65,8 @@ public class AttachController extends BaseController {
 
     /**
      * 上传文件接口
-     *
-     * @param request
-     * @return
+     * @param request re
+     * @return st
      */
     @PostMapping(value = "upload")
     @ResponseBody
@@ -104,9 +100,9 @@ public class AttachController extends BaseController {
 
     /**
      * 删除附件
-     * @param id
-     * @param request
-     * @return
+     * @param id id
+     * @param request re
+     * @return s
      */
     @RequestMapping(value = "delete")
     @ResponseBody
@@ -125,7 +121,7 @@ public class AttachController extends BaseController {
             if (e instanceof TipException) {
                 msg = e.getMessage();
             } else {
-                LOGGER.error(msg, e);
+                log.error(msg, e);
             }
             return RestResponseBo.fail(msg);
         }

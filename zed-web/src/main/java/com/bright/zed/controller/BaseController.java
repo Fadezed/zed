@@ -7,7 +7,7 @@ import com.bright.zed.model.Vo.UserVo;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Created by 13 on 2017/2/21.
+ * @author zed
  */
 public abstract class BaseController {
 
@@ -17,8 +17,8 @@ public abstract class BaseController {
 
     /**
      * 主页的页面主题
-     * @param viewName
-     * @return
+     * @param viewName view Name
+     * @return str
      */
     public String render(String viewName) {
         return THEME + "/" + viewName;
@@ -36,8 +36,8 @@ public abstract class BaseController {
 
     /**
      * 获取请求绑定的登录对象
-     * @param request
-     * @return
+     * @param request re
+     * @return user
      */
     public UserVo user(HttpServletRequest request) {
         return TaleUtils.getLoginUser(request);

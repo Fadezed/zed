@@ -7,8 +7,7 @@ import com.bright.zed.dto.Types;
 import com.bright.zed.exception.TipException;
 import com.bright.zed.model.Bo.RestResponseBo;
 import com.bright.zed.service.IMetaService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -18,21 +17,21 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * Created by 13 on 2017/2/21.
+ * 分类
+ * @author zed
  */
+@Slf4j
 @Controller
 @RequestMapping("back/category")
 public class CategoryController extends BaseController {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(CategoryController.class);
 
     @Resource
     private IMetaService metasService;
 
     /**
      * 分类页
-     * @param request
-     * @return
+     * @param request re
+     * @return str
      */
     @GetMapping(value = "")
     public String index(HttpServletRequest request) {
@@ -54,7 +53,7 @@ public class CategoryController extends BaseController {
             if (e instanceof TipException) {
                 msg = e.getMessage();
             } else {
-                LOGGER.error(msg, e);
+                log.error(msg, e);
             }
             return RestResponseBo.fail(msg);
         }
@@ -63,8 +62,8 @@ public class CategoryController extends BaseController {
 
     /**
      * 删除分类
-     * @param mid
-     * @return
+     * @param mid mid
+     * @return s
      */
     @RequestMapping(value = "delete")
     @ResponseBody
@@ -77,7 +76,7 @@ public class CategoryController extends BaseController {
             if (e instanceof TipException) {
                 msg = e.getMessage();
             } else {
-                LOGGER.error(msg, e);
+                log.error(msg, e);
             }
             return RestResponseBo.fail(msg);
         }

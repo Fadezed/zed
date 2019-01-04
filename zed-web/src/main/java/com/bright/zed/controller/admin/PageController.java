@@ -12,8 +12,7 @@ import com.bright.zed.model.Vo.UserVo;
 import com.bright.zed.service.IContentService;
 import com.bright.zed.service.ILogService;
 import com.github.pagehelper.PageInfo;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -22,13 +21,13 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Created by 13 on 2017/2/21.
+ * @author zed
+ *
  */
-@Controller()
+@Slf4j
+@Controller
 @RequestMapping("back/page")
 public class PageController extends BaseController {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(PageController.class);
 
     @Resource
     private IContentService contentsService;
@@ -87,7 +86,7 @@ public class PageController extends BaseController {
             if (e instanceof TipException) {
                 msg = e.getMessage();
             } else {
-                LOGGER.error(msg, e);
+                log.error(msg, e);
             }
             return RestResponseBo.fail(msg);
         }
@@ -124,7 +123,7 @@ public class PageController extends BaseController {
             if (e instanceof TipException) {
                 msg = e.getMessage();
             } else {
-                LOGGER.error(msg, e);
+                log.error(msg, e);
             }
             return RestResponseBo.fail(msg);
         }
@@ -143,7 +142,7 @@ public class PageController extends BaseController {
             if (e instanceof TipException) {
                 msg = e.getMessage();
             } else {
-                LOGGER.error(msg, e);
+                log.error(msg, e);
             }
             return RestResponseBo.fail(msg);
         }

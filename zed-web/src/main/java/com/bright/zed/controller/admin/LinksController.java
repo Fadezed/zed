@@ -6,8 +6,7 @@ import com.bright.zed.exception.TipException;
 import com.bright.zed.model.Bo.RestResponseBo;
 import com.bright.zed.model.Vo.MetaVo;
 import com.bright.zed.service.IMetaService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -17,21 +16,21 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * Created by 13 on 2017/2/21.
+ * 友情链接
+ * @author zed
  */
+@Slf4j
 @Controller
 @RequestMapping("back/links")
 public class LinksController extends BaseController {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(LinksController.class);
 
     @Resource
     private IMetaService metasService;
 
     /**
      * 友链
-     * @param request
-     * @return
+     * @param request re
+     * @return str
      */
     @GetMapping(value = "")
     public String index(HttpServletRequest request) {
@@ -64,7 +63,7 @@ public class LinksController extends BaseController {
             if (e instanceof TipException) {
                 msg = e.getMessage();
             } else {
-                LOGGER.error(msg, e);
+                log.error(msg, e);
             }
             return RestResponseBo.fail(msg);
         }
@@ -82,7 +81,7 @@ public class LinksController extends BaseController {
             if (e instanceof TipException) {
                 msg = e.getMessage();
             } else {
-                LOGGER.error(msg, e);
+                log.error(msg, e);
             }
             return RestResponseBo.fail(msg);
         }

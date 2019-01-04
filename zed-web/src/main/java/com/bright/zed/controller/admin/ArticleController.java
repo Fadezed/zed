@@ -14,9 +14,8 @@ import com.bright.zed.service.IContentService;
 import com.bright.zed.service.ILogService;
 import com.bright.zed.service.IMetaService;
 import com.github.pagehelper.PageInfo;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -26,14 +25,13 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * Created by 13 on 2017/2/21.
+ * @author zed
  */
+@Slf4j
 @Controller
 @RequestMapping("/back/article")
 @Transactional(rollbackFor = TipException.class)
 public class ArticleController extends BaseController {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(ArticleController.class);
 
     @Resource
     private IContentService contentsService;
@@ -46,10 +44,10 @@ public class ArticleController extends BaseController {
 
     /**
      * 文章列表
-     * @param page
-     * @param limit
-     * @param request
-     * @return
+     * @param page page
+     * @param limit limit
+     * @param request rest
+     * @return str
      */
     @GetMapping(value = "")
     public String index(@RequestParam(value = "page", defaultValue = "1") int page,
@@ -64,8 +62,8 @@ public class ArticleController extends BaseController {
 
     /**
      * 文章发表
-     * @param request
-     * @return
+     * @param request re
+     * @return str
      */
     @GetMapping(value = "/publish")
     public String newArticle(HttpServletRequest request) {
@@ -76,9 +74,9 @@ public class ArticleController extends BaseController {
 
     /**
      * 文章编辑
-     * @param cid
-     * @param request
-     * @return
+     * @param cid c
+     * @param request r
+     * @return str
      */
     @GetMapping(value = "/{cid}")
     public String editArticle(@PathVariable String cid, HttpServletRequest request) {
@@ -92,9 +90,9 @@ public class ArticleController extends BaseController {
 
     /**
      * 文章发表
-     * @param contents
-     * @param request
-     * @return
+     * @param contents c
+     * @param request re
+     * @return str
      */
     @PostMapping(value = "/publish")
     @ResponseBody
@@ -113,7 +111,7 @@ public class ArticleController extends BaseController {
             if (e instanceof TipException) {
                 msg = e.getMessage();
             } else {
-                LOGGER.error(msg, e);
+                log.error(msg, e);
             }
             return RestResponseBo.fail(msg);
         }
@@ -122,9 +120,9 @@ public class ArticleController extends BaseController {
 
     /**
      * 文章更新
-     * @param contents
-     * @param request
-     * @return
+     * @param contents c
+     * @param request r
+     * @return s
      */
     @PostMapping(value = "/modify")
     @ResponseBody
@@ -140,7 +138,7 @@ public class ArticleController extends BaseController {
             if (e instanceof TipException) {
                 msg = e.getMessage();
             } else {
-                LOGGER.error(msg, e);
+                log.error(msg, e);
             }
             return RestResponseBo.fail(msg);
         }
@@ -149,9 +147,9 @@ public class ArticleController extends BaseController {
 
     /**
      * 删除文章
-     * @param cid
-     * @param request
-     * @return
+     * @param cid c
+     * @param request r
+     * @return s
      */
     @RequestMapping(value = "/delete")
     @ResponseBody
@@ -165,7 +163,7 @@ public class ArticleController extends BaseController {
             if (e instanceof TipException) {
                 msg = e.getMessage();
             } else {
-                LOGGER.error(msg, e);
+                log.error(msg, e);
             }
             return RestResponseBo.fail(msg);
         }
