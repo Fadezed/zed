@@ -389,11 +389,10 @@ public final class Commons {
 
     /**
      * An :grinning:awesome :smiley:string &#128516;with a few :wink:emojis!
-     * <p>
      * 这种格式的字符转换为emoji表情
      *
-     * @param value
-     * @return
+     * @param value v
+     * @return str
      */
     public static String emoji(String value) {
         return EmojiParser.parseToUnicode(value);
@@ -402,19 +401,20 @@ public final class Commons {
     /**
      * 获取文章第一张图片
      *
-     * @return
+     * @return str
      */
     public static String show_thumb(String content) {
         content = TaleUtils.mdToHtml(content);
         if (content.contains("<img")) {
             String img = "";
-            String regEx_img = "<img.*src\\s*=\\s*(.*?)[^>]*?>";
-            Pattern p_image = Pattern.compile(regEx_img, Pattern.CASE_INSENSITIVE);
-            Matcher m_image = p_image.matcher(content);
-            if (m_image.find()) {
-                img = img + "," + m_image.group();
+            String regExImg = "<img.*src\\s*=\\s*(.*?)[^>]*?>";
+            Pattern pImage = Pattern.compile(regExImg, Pattern.CASE_INSENSITIVE);
+            Matcher mImage = pImage.matcher(content);
+            if (mImage.find()) {
+                img = img + "," + mImage.group();
                 // //匹配src
-                Matcher m = Pattern.compile("src\\s*=\\s*\'?\"?(.*?)(\'|\"|>|\\s+)").matcher(img);
+                Pattern pattern = Pattern.compile("src\\s*=\\s*\'?\"?(.*?)(\'|\"|>|\\s+)");
+                Matcher m =pattern.matcher(img);
                 if (m.find()) {
                     return m.group(1);
                 }
@@ -428,8 +428,8 @@ public final class Commons {
     /**
      * 显示文章图标
      *
-     * @param cid
-     * @return
+     * @param cid c
+     * @return str
      */
     public static String show_icon(int cid) {
         return ICONS[cid % ICONS.length];
@@ -438,7 +438,7 @@ public final class Commons {
     /**
      * 获取社交的链接地址
      *
-     * @return
+     * @return map
      */
     public static Map<String, String> social() {
         final String prefix = "social_";
